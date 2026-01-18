@@ -9,4 +9,9 @@ class Language extends Model
     protected $fillable = [
         'code',
     ];
+
+    public function locales()
+    {
+        return $this->hasMany(Locale::class);
+    }
 }
