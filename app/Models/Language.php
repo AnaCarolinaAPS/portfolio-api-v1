@@ -14,4 +14,9 @@ class Language extends Model
     {
         return $this->hasMany(Locale::class);
     }
+
+    public function translations()
+    {
+        return $this->hasMany(LanguageTranslation::class);
+    }
 }

@@ -14,7 +14,7 @@ class LanguageController extends Controller
     public function index()
     {
         // Retorna todas as entidades cadastradas
-        return Language::with('locales')->get();
+        return Language::with(['locales', 'translations.locale'])->get();
     }
 
     /**
@@ -23,7 +23,7 @@ class LanguageController extends Controller
     public function show(string $id)
     {
         // Busca pelo ID e retorna a entidade
-        $language = Language::with('locales')->findOrFail($id);
+        $language = Language::with(['locales', 'translations.locale'])->findOrFail($id);
         return $language;
     }
 }
