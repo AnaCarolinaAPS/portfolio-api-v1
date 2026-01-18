@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Language;
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,39 +13,35 @@ class LanguageSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1️⃣ Buscar ou criar um usuário admin
-        $user = User::first() ?? User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password'),
-        ]);
-
-        // 2️⃣ Criar idiomas
+        // Criar idiomas
         Language::insert([
             [
-                'user_id' => $user->id,
-                'code' => 'pt-BR',
-                'name' => 'Português',
-                'flag' => 'br',
-                'is_default' => true,
+                'code' => 'pt',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'user_id' => $user->id,
-                'code' => 'en-US',
-                'name' => 'English',
-                'flag' => 'us',
-                'is_default' => false,
+                'code' => 'en',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'user_id' => $user->id,
                 'code' => 'es',
-                'name' => 'Español',
-                'flag' => 'es',
-                'is_default' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'code' => 'fr',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'code' => 'it',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'code' => 'de',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

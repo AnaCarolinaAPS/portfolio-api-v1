@@ -13,11 +13,7 @@ return new class extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('code', 10)->unique();   // pt-BR, en-US, es-PY
-            $table->string('name');                 // Português, English, Espanhol
-            $table->string('flag', 5);              // br, us, py
-            $table->boolean('is_default')->default(false);
+            $table->string('code', 5)->unique();    // pt, en, es, fr, it, de
             $table->timestamps();
         });
     }

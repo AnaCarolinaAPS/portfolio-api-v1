@@ -7,15 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Language extends Model
 {
     protected $fillable = [
-        'user_id',
         'code',
-        'name',
-        'flag',
-        'is_default',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
