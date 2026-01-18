@@ -15,4 +15,9 @@ class Locale extends Model
     {
         return $this->belongsTo(Language::class, 'language_id');
     }
+
+    public function languageTranslations()
+    {
+        return $this->hasMany(LanguageTranslation::class);
+    }
 }
