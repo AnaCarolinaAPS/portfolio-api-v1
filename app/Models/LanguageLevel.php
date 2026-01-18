@@ -9,4 +9,9 @@ class LanguageLevel extends Model
     protected $fillable = [
         'code',
     ];
+
+    public function translations()
+    {
+        return $this->hasMany(LanguageLevelTranslation::class);
+    }
 }

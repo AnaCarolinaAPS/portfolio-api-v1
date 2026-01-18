@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\LanguageLevel;
+use App\Models\LanguageLevelTranslation;
 use Illuminate\Http\Request;
 
-class LanguageLevelController extends Controller
+class LanguageLevelTranslationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class LanguageLevelController extends Controller
     public function index()
     {
         // Retorna todas as entidades cadastradas
-        return LanguageLevel::with(['translations.locale'])->get();
+        return LanguageLevelTranslation::with(['locale', 'languageLevel'])->get();
     }
 
     /**
@@ -23,7 +23,7 @@ class LanguageLevelController extends Controller
     public function show(string $id)
     {
         // Busca pelo ID e retorna a entidade
-        $languageLevel = LanguageLevel::with(['translations.locale'])->findOrFail($id);
-        return $languageLevel;
+        $languageLevelTranslation = LanguageLevelTranslation::with(['locale', 'languageLevel'])->findOrFail($id);
+        return $languageLevelTranslation;
     }
 }
