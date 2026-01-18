@@ -14,7 +14,7 @@ class LocaleController extends Controller
     public function index()
     {
         // Retorna todas as entidades cadastradas
-        return Locale::with('language')->get();
+        return Locale::with(['language', 'languageTranslations'])->get();
     }
 
     /**
@@ -23,7 +23,7 @@ class LocaleController extends Controller
     public function show(string $id)
     {
         // Busca pelo ID e retorna a entidade
-        $locale = Locale::with('language')->findOrFail($id);
+        $locale = Locale::with(['language', 'languageTranslations'])->findOrFail($id);
         return $locale;
     }
 }
