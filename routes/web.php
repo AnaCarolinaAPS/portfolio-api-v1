@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\LanguageTranslationController;
 use App\Http\Controllers\Admin\LocaleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -30,6 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/admin/locales')->group(function () {
         Route::get('/', [LocaleController::class, 'index'])->name('locales.index');
         Route::get('/{locale}', [LocaleController::class, 'show'])->name('locales.show');
+    });
+
+    // Languages Translations
+    Route::prefix('/admin/languagesTranslations')->group(function () {
+        Route::get('/', [LanguageTranslationController::class, 'index'])->name('languagesTranslations.index');
+        Route::get('/{languagesTranslations}', [LanguageTranslationController::class, 'show'])->name('languagesTranslations.show');
     });
 });
 
