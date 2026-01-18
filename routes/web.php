@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\LanguageLevelController;
 use App\Http\Controllers\Admin\LanguageTranslationController;
 use App\Http\Controllers\Admin\LocaleController;
 use App\Http\Controllers\ProfileController;
@@ -36,7 +37,13 @@ Route::middleware('auth')->group(function () {
     // Languages Translations
     Route::prefix('/admin/languagesTranslations')->group(function () {
         Route::get('/', [LanguageTranslationController::class, 'index'])->name('languagesTranslations.index');
-        Route::get('/{languagesTranslations}', [LanguageTranslationController::class, 'show'])->name('languagesTranslations.show');
+        Route::get('/{languagesTranslation}', [LanguageTranslationController::class, 'show'])->name('languagesTranslations.show');
+    });
+
+    // Languages Translations
+    Route::prefix('/admin/languageLevels')->group(function () {
+        Route::get('/', [LanguageLevelController::class, 'index'])->name('languageLevels.index');
+        Route::get('/{languageLevel}', [LanguageLevelController::class, 'show'])->name('languageLevels.show');
     });
 });
 
