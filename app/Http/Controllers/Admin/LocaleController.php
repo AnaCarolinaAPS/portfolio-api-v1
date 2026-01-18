@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Language;
+use App\Models\Locale;
 use Illuminate\Http\Request;
 
-class LanguageController extends Controller
+class LocaleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class LanguageController extends Controller
     public function index()
     {
         // Retorna todas as entidades cadastradas
-        return Language::with('locales')->get();
+        return Locale::with('language')->get();
     }
 
     /**
@@ -23,7 +23,7 @@ class LanguageController extends Controller
     public function show(string $id)
     {
         // Busca pelo ID e retorna a entidade
-        $language = Language::with('locales')->findOrFail($id);
-        return $language;
+        $locale = Locale::with('language')->findOrFail($id);
+        return $locale;
     }
 }
