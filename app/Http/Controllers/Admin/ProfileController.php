@@ -46,4 +46,23 @@ class ProfileController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * Switch the session profile id.
+     */
+    public function switch(Profile $profile)
+    {
+        // Segurança: garante que o profile é do usuário logado
+        abort_if($profile->user_id !== Auth::id(), 403);
+
+        // Atualiza a session
+        session([
+            'current_profile_id' => $profile->id,
+        ]);
+
+        // Atualiza o locale da aplicação (opcional mas recomendado)
+        app()->setLocale($profile->locale->code);
+
+        return back();
+    }
 }

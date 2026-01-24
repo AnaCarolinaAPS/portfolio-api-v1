@@ -66,4 +66,10 @@ class User extends Authenticatable
             ->orderBy('locales.code')
             ->select('profiles.*');
     }
+
+    public function currentProfile()
+    {
+        return $this->profiles
+                ->firstWhere('id', session('current_profile_id'));
+    }
 }

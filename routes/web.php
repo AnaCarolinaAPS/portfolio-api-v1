@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LanguageLevelController;
 use App\Http\Controllers\Admin\LanguageLevelTranslationController;
@@ -58,6 +59,16 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/admin/profiles')->group(function () {
         Route::post('/', [AdminProfileController::class, 'store'])->name('profiles.store');
         Route::put('/{profile}', [AdminProfileController::class, 'update'])->name('profiles.update');
+        Route::post('/switch/{profile}', [AdminProfileController::class, 'switch'])->name('profiles.switch');
+
+    });
+
+    // Information
+    Route::prefix('/admin/informations')->group(function () {
+        Route::get('/', [InformationController::class, 'index'])->name('informations.index');
+        Route::get('/{information}', [InformationController::class, 'show'])->name('informations.show');
+        Route::post('/', [InformationController::class, 'store'])->name('informations.store');
+        Route::put('/{information}', [InformationController::class, 'update'])->name('informations.update');
     });
 });
 
