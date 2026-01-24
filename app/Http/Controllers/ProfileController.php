@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Locale;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,16 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        // Get the locale ids of all profiles the user have
+        $profile_locales_ids = Auth::user()->profiles()->pluck('locale_id');
+
+        // Get Locales where the user DOESN'T have a profile created
+        $locales = Locale::whereNotIn('id', $profile_locales_ids)
+                    ->orderBy('code', 'asc')
+                    ->get();
         return view('profile.edit', [
             'user' => $request->user(),
+            'locales' => $locales,
         ]);
     }
 
