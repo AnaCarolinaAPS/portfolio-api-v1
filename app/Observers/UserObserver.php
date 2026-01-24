@@ -14,15 +14,10 @@ class UserObserver
     public function created(User $user): void
     {
         //When a user is created we need to create one Profile for him/her with the choosen locale_id
-        // Auth::user()->profiles()->create([
-        //     'locale_id' => Auth::user()->locale_default,
-        // ]);
-
         Profile::create([
             'user_id' => $user->id,
             'locale_id' => $user->locale_default,
         ]);
-
     }
 
     /**
