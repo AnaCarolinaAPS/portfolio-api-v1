@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LanguageLevelController;
 use App\Http\Controllers\Admin\LanguageLevelTranslationController;
 use App\Http\Controllers\Admin\LanguageTranslationController;
 use App\Http\Controllers\Admin\LocaleController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +52,12 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/admin/languageLevelTranslations')->group(function () {
         Route::get('/', [LanguageLevelTranslationController::class, 'index'])->name('languageLevelTranslations.index');
         Route::get('/{languageLevelTranslation}', [LanguageLevelTranslationController::class, 'show'])->name('languageLevelTranslations.show');
+    });
+
+    // Profiles
+    Route::prefix('/admin/profiles')->group(function () {
+        Route::post('/', [AdminProfileController::class, 'store'])->name('profiles.store');
+        Route::put('/{profile}', [AdminProfileController::class, 'update'])->name('profiles.update');
     });
 });
 

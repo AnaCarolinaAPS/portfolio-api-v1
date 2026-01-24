@@ -47,8 +47,23 @@ class User extends Authenticatable
         ];
     }
 
+    public function defaultLocale()
+    {
+        return $this->belongsTo(Locale::class, 'locale_default');
+    }
+
     public function languages()
     {
         return $this->hasMany(Language::class);
+    }
+
+    // Retorna sempre os ativos primeiro em ordem alfabetica
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class)
+            ->join('locales', 'profiles.locale_id', '=', 'locales.id')
+            ->orderByDesc('profiles.is_active')
+            ->orderBy('locales.code')
+            ->select('profiles.*');
     }
 }
