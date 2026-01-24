@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Language::class);
     }
+
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
 }
