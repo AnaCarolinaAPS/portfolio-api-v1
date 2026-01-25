@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(LanguageSeeder::class);
+        $this->call(LocaleSeeder::class);
+        $this->call(LanguageTranslationSeeder::class);
+        $this->call(LanguageLevelSeeder::class);
+        $this->call(LanguageLevelTranslationSeeder::class);
     }
 }
