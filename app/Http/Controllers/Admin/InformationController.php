@@ -17,6 +17,16 @@ class InformationController extends Controller
     {
         //Retorna o Information de acordo com o Profile atual
         $information = Information::where('profile_id', session('current_profile_id'))->first();
+
+        if (!$information) {
+            $userDefaultPerfil = Profile::where('locale_id', Auth::user()->locale_default)->first();
+            $information = Information::where('profile_id', $userDefaultPerfil->id)->first();
+            // Atualiza a session
+            session([
+                'current_profile_id' => $userDefaultPerfil->id,
+            ]);
+        }
+
         return view('admin.information', compact('information'));
     }
 
