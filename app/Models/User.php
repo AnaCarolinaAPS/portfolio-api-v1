@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'locale_default',
+        'api_key',
     ];
 
     /**
@@ -44,5 +46,30 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function defaultLocale()
+    {
+        return $this->belongsTo(Locale::class, 'locale_default');
+    }
+
+    // Retorna sempre os ativos primeiro em ordem alfabetica
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class)
+            ->join('locales', 'profiles.locale_id', '=', 'locales.id')
+            ->orderByDesc('profiles.is_active')
+            ->orderBy('locales.code')
+            ->select('profiles.*');
+    }
+
+    public function currentProfile()
+    {
+        return $this->profiles->firstWhere('id', session('current_profile_id'));
+    }
+
+    public function languages()
+    {
+        return $this->hasMany(SpokenLanguage::class);
     }
 }

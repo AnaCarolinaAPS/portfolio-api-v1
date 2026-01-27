@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Profile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        $profile = Profile::where('user_id', Auth::user()->id)
+                            ->where('locale_id', Auth::user()->locale_default)->first();
+        session(['current_profile_id' => $profile->id]);
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
