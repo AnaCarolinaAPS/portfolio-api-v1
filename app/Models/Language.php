@@ -19,4 +19,13 @@ class Language extends Model
     {
         return $this->hasMany(LanguageTranslation::class);
     }
+
+    public function translate(string $code)
+    {
+        return $this->translations()
+                    ->whereHas('locale', function ($q) use ($code) {
+                        $q->where('code', $code);
+                    })
+                    ->first()->name ?? $this->code;
+    }
 }

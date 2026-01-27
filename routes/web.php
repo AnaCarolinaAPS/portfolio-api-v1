@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\LanguageLevelTranslationController;
 use App\Http\Controllers\Admin\LanguageTranslationController;
 use App\Http\Controllers\Admin\LocaleController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\SpokenLanguageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/{information}', [InformationController::class, 'show'])->name('informations.show');
         Route::post('/', [InformationController::class, 'store'])->name('informations.store');
         Route::put('/{information}', [InformationController::class, 'update'])->name('informations.update');
+    });
+
+    // Spoken Languages
+    Route::prefix('/admin/spokenLanguages')->group(function () {
+        Route::get('/', [SpokenLanguageController::class, 'index'])->name('spokenLanguages.index');
+        // Route::get('/{spokenLanguage}', [InformationController::class, 'show'])->name('informations.show');
+        Route::post('/', [SpokenLanguageController::class, 'store'])->name('spokenLanguages.store');
+        Route::put('/{spokenLanguage}', [SpokenLanguageController::class, 'update'])->name('spokenLanguages.update');
+        Route::delete('/{spokenLanguage}', [SpokenLanguageController::class, 'destroy'])->name('spokenLanguages.destroy');
     });
 });
 
