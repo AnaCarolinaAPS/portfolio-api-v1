@@ -53,11 +53,6 @@ class User extends Authenticatable
         return $this->belongsTo(Locale::class, 'locale_default');
     }
 
-    public function languages()
-    {
-        return $this->hasMany(Language::class);
-    }
-
     // Retorna sempre os ativos primeiro em ordem alfabetica
     public function profiles()
     {
@@ -70,7 +65,11 @@ class User extends Authenticatable
 
     public function currentProfile()
     {
-        return $this->profiles
-                ->firstWhere('id', session('current_profile_id'));
+        return $this->profiles->firstWhere('id', session('current_profile_id'));
+    }
+
+    public function languages()
+    {
+        return $this->hasMany(SpokenLanguage::class);
     }
 }
