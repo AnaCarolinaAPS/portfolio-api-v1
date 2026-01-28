@@ -19,6 +19,14 @@ class SpokenLanguageController extends Controller
      */
     public function index()
     {
+        if (!session(['current_profile_id'])) {
+            $userDefaultPerfil = Profile::where('locale_id', Auth::user()->locale_default)->first();
+            // Atualiza a session
+            session([
+                'current_profile_id' => $userDefaultPerfil->id,
+            ]);
+        }
+
         //Idiomas que o usuário tem no perfil
         $spoken_languages = Auth::user()->languages()->pluck('language_id');
 
