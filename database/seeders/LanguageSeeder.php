@@ -30,21 +30,21 @@ class LanguageSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'code' => 'fr',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'code' => 'it',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'code' => 'de',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            // [
+            //     'code' => 'fr',
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
+            // [
+            //     'code' => 'it',
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
+            // [
+            //     'code' => 'de',
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ],
         ]);
     }
 }
