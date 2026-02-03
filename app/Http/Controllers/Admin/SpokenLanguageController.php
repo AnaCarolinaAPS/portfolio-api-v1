@@ -19,7 +19,7 @@ class SpokenLanguageController extends Controller
      */
     public function index()
     {
-        if (!session(['current_profile_id'])) {
+        if (!session('current_profile_id')) {
             $userDefaultPerfil = Profile::where('locale_id', Auth::user()->locale_default)->first();
             // Atualiza a session
             session([
