@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('degree');
             $table->string('institution');
             $table->string('observation')->nullable();
+            $table->unique(['education_id', 'locale_id']);
             $table->timestamps();
         });
     }
