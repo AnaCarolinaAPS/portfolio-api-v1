@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('informations.index')" :active="request()->routeIs('informations.index')">
                         {{ __('Information') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('educations.index')" :active="request()->routeIs('educations.index')">
+                        {{ __('Educations') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('spokenLanguages.index')" :active="request()->routeIs('spokenLanguages.index')">
                         {{ __('Languages') }}
                     </x-nav-link>
