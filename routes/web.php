@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ApiKeyController;
+use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LanguageLevelController;
@@ -77,10 +78,16 @@ Route::middleware('auth')->group(function () {
     // Spoken Languages
     Route::prefix('/admin/spokenLanguages')->group(function () {
         Route::get('/', [SpokenLanguageController::class, 'index'])->name('spokenLanguages.index');
-        // Route::get('/{spokenLanguage}', [InformationController::class, 'show'])->name('informations.show');
         Route::post('/', [SpokenLanguageController::class, 'store'])->name('spokenLanguages.store');
         Route::put('/{spokenLanguage}', [SpokenLanguageController::class, 'update'])->name('spokenLanguages.update');
         Route::delete('/{spokenLanguage}', [SpokenLanguageController::class, 'destroy'])->name('spokenLanguages.destroy');
+    });
+    // Spoken Languages
+    Route::prefix('/admin/education')->group(function () {
+        Route::get('/', [EducationController::class, 'index'])->name('educations.index');
+        Route::post('/', [EducationController::class, 'store'])->name('educations.store');
+        Route::put('/{education}', [EducationController::class, 'update'])->name('educations.update');
+        Route::delete('/{education}', [EducationController::class, 'destroy'])->name('educations.destroy');
     });
 });
 
